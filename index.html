@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>服务器加载中...</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div id="particles-js"></div>
+    <div class="time-bar glass-effect">
+        <div class="time-info">
+            <div class="current-time">
+                <i class="fas fa-clock"></i>
+                <span>当前时间：<span id="current-time">00:00:00</span></span>
+            </div>
+            <div class="separator"></div>
+            <div class="elapsed-time">
+                <i class="fas fa-hourglass-half"></i>
+                <span>加载时间：<span id="elapsed-time">00:00:00</span></span>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="left-section glass-effect">
+            <div class="rules">
+                <h3>规则</h3>
+                <div class="rule-item fade-in-up" style="animation-delay: 0.1s">
+                    <div class="rule-number">1</div>
+                    <p>禁止使用作弊程序</p>
+                </div>
+                <div class="rule-item fade-in-up" style="animation-delay: 0.2s">
+                    <div class="rule-number">2</div>
+                    <p>禁止恶意卡服</p>
+                </div>
+                <div class="rule-item fade-in-up" style="animation-delay: 0.3s">
+                    <div class="rule-number">3</div>
+                    <p>禁止骚扰他人</p>
+                </div>
+                <div class="rule-item fade-in-up" style="animation-delay: 0.4s">
+                    <div class="rule-number">4</div>
+                    <p>进入游戏看!motd</p>
+                </div>
+            </div>
+
+            <div class="description fade-in-up" style="animation-delay: 0.5s">
+                <h3>关于我们服务器</h3>
+                <p>欢迎来到我们的服务器！<br>
+                这是一个有着两年历史的服务器<br>
+                2022年开服至今走过许多弯路<br>
+                最终坚持了下来<br>
+                感谢所有玩家长久以来的陪伴与支持<br>
+                也感谢各位水拉拉高层们对水拉拉付出的努力<br><br>
+                加群订阅合集加载速度更快哦!</p>
+            </div>
+
+            <div class="contact-info fade-in-up" style="animation-delay: 0.6s">
+                <h3>联系方式</h3>
+                <div class="contact-list">
+                    <div class="contact-item">
+                        <i class="fab fa-qq"></i>
+                        <span>QQ群：1021648987</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-qq"></i>
+                        <span>腐竹QQ：213126949</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="center-section glass-effect">
+            <div class="server-info fade-in-up" style="animation-delay: 0.2s">
+                <div class="info-grid">
+                    <div class="info-item">
+                        <i class="fas fa-map"></i>
+                        <h3>地图</h3>
+                        <p id="mapname" class="highlight">gm_flatgrass</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-gamepad"></i>
+                        <h3>游戏模式</h3>
+                        <p id="gamemode" class="highlight">sandbox</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-users"></i>
+                        <h3>最大人数</h3>
+                        <p class="highlight"><span id="players">64人</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="server-logo fade-in-up" style="animation-delay: 0.3s">
+                <div class="logo-container">
+                    
+                    <i class="fas fa-server logo-icon"></i>
+                </div>
+            </div>
+
+            <div class="main-title fade-in-up" style="animation-delay: 0.4s">
+                <h4>欢迎来到</h4>
+                <h1 id="servername" class="glow">[SLL]水拉拉沙盒服|休闲娱乐|</h1>
+                <div class="server-tags">
+                    <span class="tag"><i class="fas fa-shield-alt"></i> 全能管理</span>
+                    <span class="tag"><i class="fas fa-tachometer-alt"></i> 新手帮助</span>
+                    <span class="tag"><i class="fas fa-clock"></i> 自动重启</span>
+                </div>
+            </div>
+
+            <div class="connection-info fade-in-up" style="animation-delay: 0.5s">
+                <div class="connection-status">
+                    <div class="status-indicator"></div>
+                    <span>连接状态良好</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-section glass-effect">
+            <div class="staff">
+                <h3 class="text-flicker">管理团队</h3>
+                <div class="staff-member fade-in-up" style="animation-delay: 0.1s">
+                    <div class="avatar">
+                        <img src="https://avatars.fastly.steamstatic.com/646acdb1cb4e8b0926ecdff0eb74e835efc7dc6d_full.jpg" alt="GOAT666">
+                    </div>
+                    <div class="staff-info">
+                        <h4>GOAT666</h4>
+                        <p class="role">服主1</p>
+                    </div>
+                </div>
+                <div class="staff-member fade-in-up" style="animation-delay: 0.2s">
+                    <div class="avatar">
+                        <img src="https://avatars.fastly.steamstatic.com/48af443e8508a4b1b5b818533576f0067a18bf8f_full.jpg" alt="llidehai3">
+                    </div>
+                    <div class="staff-info">
+                        <h4>llidehai3</h4>
+                        <p class="role">服主2</p>
+                    </div>
+                </div>
+                <div class="staff-member fade-in-up" style="animation-delay: 0.3s">
+                    <div class="avatar">
+                        <img src="https://avatars.fastly.steamstatic.com/2eaeee913bfdad0ec0b7b0ccf57ff572fbfa8313_full.jpg" alt="优里">
+                    </div>
+                    <div class="staff-info">
+                        <h4>优里</h4>
+                        <p class="role">服主3</p>
+                    </div>
+                </div>
+                <div class="staff-member fade-in-up" style="animation-delay: 0.3s">
+                    <div class="avatar">
+                        <img src="https://avatars.fastly.steamstatic.com/4d9aaecf3e1c00f25d74f02a322ab0e17c896b1e_full.jpg" alt="1">
+                    </div>
+                    <div class="staff-info">
+                        <h4>TFBOT</h4>
+                        <p class="role">超强金主兼服主4</p>
+                    </div>
+                </div>
+                <div class="staff-member fade-in-up" style="animation-delay: 0.3s">
+                    <div class="avatar">
+                        <img src="https://avatars.fastly.steamstatic.com/9463707ea1cef47b20a3874456d3e3ad59f3af16_full.jpg" alt="2">
+                    </div>
+                    <div class="staff-info">
+                        <h4>goat999</h4>
+                        <p class="role">服主1私人秘书</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="music-player fade-in-up" style="animation-delay: 0.4s">
+                <h3>背景音乐</h3>
+                <div class="music-info">
+                    <div class="song-info">
+                        <div class="album-cover">
+                            <img src="109951170225711695.jpg" alt="album cover">
+                        </div>
+                        <div>
+                            <h4>春日影 (MyGO!!!!! ver.)</h4>
+                            <p>MyGO!!!!!</p>
+                        </div>
+                    </div>
+                    <div class="music-controls">
+                        <button id="toggleMusic" class="play-button">
+                            <i class="fas fa-play"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="song-details">
+                    <div class="detail-item">
+                        <i class="fas fa-compact-disc"></i>
+                        <span>所属专辑：迷跡波</span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-calendar"></i>
+                        <span>发行时间：2023-11-01</span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-clock"></i>
+                        <span>时长：4:16</span>
+                    </div>
+                </div>
+                <div class="lyrics-container">
+                    <div class="lyrics-wrapper" id="lyricsWrapper">
+                        <!-- 删除歌词加载提示 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="loading-bar glass-effect">
+        <div class="progress-text">
+            <span id="status">正在获取服务器信息...</span>
+            <span id="percentage">0%</span>
+        </div>
+        <div class="progress-container">
+            <div class="progress" id="progress">
+                <div class="progress-glow"></div>
+            </div>
+        </div>
+    </div>
+    <div class="loading-tips">
+        <div class="tips-content" id="loadingTips">
+            🎇Happy New Year🧧Shuilala2025🧨~
+        </div>
+    </div>
+    <canvas id="audioCanvas" class="audio-visualizer"></canvas>
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="fireworks.js"></script>
+    <audio id="bgMusic" loop autoplay>
+        <source src="2.mp3" type="audio/mpeg">
+    </audio>
+</body>
+</html> 
