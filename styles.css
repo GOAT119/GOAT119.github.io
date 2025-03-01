@@ -1,10 +1,19 @@
 :root {
-    --primary-color: #ff3838;
-    --secondary-color: #ffd700;
-    --background-color: #1a1a1a;
-    --text-color: #ffffff;
-    --glass-background: rgba(255, 56, 56, 0.1);
-    --glass-border: rgba(255, 215, 0, 0.2);
+    /* 主色调 */
+    --primary-dark: #1a2634;    /* 深军绿色 */
+    --primary-light: #2C3E50;   /* 军绿色 */
+    
+    /* 强调色 */
+    --accent-color: #C0392B;    /* 军红色 */
+    --accent-hover: #E74C3C;    /* 高亮红色 */
+    
+    /* 辅助色 */
+    --secondary-dark: #34495E;  /* 迷彩绿 */
+    --secondary-light: #486581; /* 浅迷彩色 */
+    
+    /* 玻璃效果颜色 */
+    --glass-bg: rgba(26, 38, 52, 0.8);     /* 深色半透明背景 */
+    --glass-border: rgba(255, 255, 255, 0.1); /* 边框颜色 */
 }
 
 * {
@@ -17,14 +26,15 @@ body {
     margin: 0;
     padding: 0;
     min-height: 100vh;
-    background-image: url('10.png');
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%);
+    font-family: 'Noto Sans SC', sans-serif;
+    color: #fff;
+    position: relative;
+    background-image: url('123.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    font-family: 'Noto Sans SC', sans-serif;
-    color: #fff;
-    position: relative;
 }
 
 body::before {
@@ -54,11 +64,11 @@ body::before {
 }
 
 .glass-effect {
-    background: rgba(255, 0, 0, 0.05);
-    border: 1px solid rgba(255, 215, 0, 0.15);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    box-shadow: 0 8px 32px 0 rgba(255, 0, 0, 0.08);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
     border-radius: 10px;
     padding: 20px;
     position: relative;
@@ -130,12 +140,12 @@ body::before {
 }
 
 .glow {
-    font-size: 29.8em;
+    font-size: 2.8em;
     margin: 15px 0;
-    background: linear-gradient(45deg, var(--primary-color), #54b0ed);
+    background: linear-gradient(45deg, var(--accent-color), var(--secondary-dark));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 20px rgba(30, 156, 198, 0.5);
+    text-shadow: 0 0 15px rgba(192, 57, 43, 0.7);
 }
 
 /* 管理员样式 */
@@ -190,7 +200,7 @@ body::before {
 
 .progress {
     height: 100%;
-    background: linear-gradient(90deg, #ff3838, #ffd700);
+    background: linear-gradient(90deg, var(--accent-color), var(--accent-hover));
     width: 0%;
     transition: width 0.3s ease;
     position: relative;
@@ -202,7 +212,8 @@ body::before {
     right: 0;
     width: 20px;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(0, 4, 255, 0.8), transparent);
+    background: var(--accent-color);
+    filter: blur(10px);
     animation: progressGlow 1.5s linear infinite;
 }
 
@@ -345,7 +356,7 @@ body::before {
 }
 
 .tag {
-    background: rgba(255, 255, 255, 0.15);
+    background: var(--secondary-dark);
     padding: 5px 15px;
     border-radius: 20px;
     font-size: 0.9em;
@@ -353,15 +364,16 @@ body::before {
     align-items: center;
     gap: 5px;
     transition: all 0.3s ease;
+    border: 1px solid var(--glass-border);
 }
 
 .tag:hover {
-    background: rgba(0, 0, 0, 0.3);
+    background: var(--secondary-light);
     transform: translateY(-2px);
 }
 
 .tag i {
-    color: var(--primary-color);
+    color: var(--accent-color);
 }
 
 /* 玩信息样式更新 */
@@ -456,10 +468,10 @@ body::before {
 .glow {
     font-size: 2.8em;
     margin: 15px 0;
-    background: linear-gradient(45deg, var(--primary-color), #6cc2ff);
+    background: linear-gradient(45deg, var(--accent-color), var(--secondary-dark));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 20px rgba(101, 183, 255, 0.5);
+    text-shadow: 0 0 15px rgba(192, 57, 43, 0.7);
 }
 
 /* 时间信息栏样式 */
@@ -609,28 +621,23 @@ body::before {
     border-radius: 3px;
 }
 
-/* 修改闪烁动画，降低亮度 */
-.text-flicker {
-    animation: textFlicker 0.934s infinite;
-}
-
+/* 修改闪烁动画 */
 @keyframes textFlicker {
     0%, 100% {
         text-shadow: 
-            0 0 2px rgba(255, 56, 56, 0.6),
-            0 0 4px rgba(255, 215, 0, 0.4),
-            0 0 8px rgba(255, 56, 56, 0.6),
-            0 0 12px rgba(255, 215, 0, 0.4);
+            0 0 2px rgba(192, 57, 43, 0.6),
+            0 0 4px rgba(52, 73, 94, 0.4),
+            0 0 8px rgba(192, 57, 43, 0.6),
+            0 0 12px rgba(52, 73, 94, 0.4);
     }
     50% {
         text-shadow: 
-            0 0 1px rgba(255, 56, 56, 0.4),
-            0 0 2px rgba(255, 215, 0, 0.3),
-            0 0 4px rgba(255, 56, 56, 0.4),
-            0 0 6px rgba(255, 215, 0, 0.3);
+            0 0 1px rgba(192, 57, 43, 0.4),
+            0 0 2px rgba(52, 73, 94, 0.3),
+            0 0 4px rgba(192, 57, 43, 0.4),
+            0 0 6px rgba(52, 73, 94, 0.3);
     }
 }
-
 
 h3.text-flicker:nth-child(odd) {
     animation-delay: 0.3s;
@@ -643,7 +650,6 @@ h3.text-flicker:nth-child(even) {
 #servername.text-flicker {
     animation-delay: 0s;
 }
-*/
 
 /* 添加联系方式样式 */
 .contact-info {
@@ -871,7 +877,7 @@ button:hover {
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-/* 添加发光效果 */
+/* 修改专辑封面发光效果 */
 .album-cover::after {
     content: '';
     position: absolute;
@@ -882,19 +888,19 @@ button:hover {
     border-radius: 50%;
     background: transparent;
     border: 2px solid transparent;
-    box-shadow: 0 0 15px rgba(255, 152, 0, 0.3);
+    box-shadow: 0 0 15px var(--accent-color);
     animation: glowing 2s linear infinite;
 }
 
 @keyframes glowing {
     0% {
-        box-shadow: 0 0 15px rgba(255, 152, 0, 0.3);
+        box-shadow: 0 0 15px rgba(192, 57, 43, 0.3);
     }
     50% {
-        box-shadow: 0 0 20px rgba(255, 152, 0, 0.5);
+        box-shadow: 0 0 20px rgba(192, 57, 43, 0.5);
     }
     100% {
-        box-shadow: 0 0 15px rgba(255, 152, 0, 0.3);
+        box-shadow: 0 0 15px rgba(192, 57, 43, 0.3);
     }
 }
 
@@ -933,5 +939,11 @@ button:hover {
 .glass-effect {
     position: relative;
     z-index: 10;
+}
+
+/* 添加军事风格边框 */
+.container > div {
+    border: 2px solid var(--glass-border);
+    border-radius: 8px;
 }
  
