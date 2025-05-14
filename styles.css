@@ -1,19 +1,19 @@
 :root {
     /* 主色调 */
-    --primary-dark: #1a2634;    /* 深军绿色 */
-    --primary-light: #2C3E50;   /* 军绿色 */
+    --primary-dark: #43c46e;    /* 深军绿色 */
+    --primary-light: #4685c4;   /* 军绿色 */
     
     /* 强调色 */
-    --accent-color: #C0392B;    /* 军红色 */
-    --accent-hover: #E74C3C;    /* 高亮红色 */
+    --accent-color: #f4b811;    /* 军红色 */
+    --accent-hover: #f0f40c;    /* 高亮红色 */
     
     /* 辅助色 */
     --secondary-dark: #34495E;  /* 迷彩绿 */
     --secondary-light: #486581; /* 浅迷彩色 */
     
     /* 玻璃效果颜色 */
-    --glass-bg: rgba(26, 38, 52, 0.8);     /* 深色半透明背景 */
-    --glass-border: rgba(255, 255, 255, 0.1); /* 边框颜色 */
+    --glass-bg: rgba(0, 179, 255, 0.123);     /* 深色半透明背景 */
+    --glass-border: rgba(31, 157, 189, 0.822); /* 边框颜色 */
 }
 
 * {
@@ -26,7 +26,7 @@ body {
     margin: 0;
     padding: 0;
     min-height: 100vh;
-    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%);
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 10%);
     font-family: 'Noto Sans SC', sans-serif;
     color: #fff;
     position: relative;
@@ -90,21 +90,6 @@ body::before {
 }
 
 /* 动画效果 */
-.fade-in-up {
-    animation: fadeInUp 2s ease forwards;
-    opacity: 0;
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(999px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(8);
-    }
-}
 
 /* 规则样式 */
 .rule-item {
@@ -625,17 +610,17 @@ body::before {
 @keyframes textFlicker {
     0%, 100% {
         text-shadow: 
-            0 0 2px rgba(192, 57, 43, 0.6),
-            0 0 4px rgba(52, 73, 94, 0.4),
+            0 0 2px rgba(43, 145, 192, 0.6),
+            0 0 4px rgba(0, 117, 235, 0.4),
             0 0 8px rgba(192, 57, 43, 0.6),
             0 0 12px rgba(52, 73, 94, 0.4);
     }
     50% {
         text-shadow: 
-            0 0 1px rgba(192, 57, 43, 0.4),
+            0 0 1px rgba(3, 139, 202, 0.692),
             0 0 2px rgba(52, 73, 94, 0.3),
-            0 0 4px rgba(192, 57, 43, 0.4),
-            0 0 6px rgba(52, 73, 94, 0.3);
+            0 0 4px rgba(0, 238, 255, 0.4),
+            0 0 6px rgba(0, 101, 202, 0.63);
     }
 }
 

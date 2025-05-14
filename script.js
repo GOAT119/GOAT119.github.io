@@ -372,7 +372,7 @@ function preloadImage(url) {
 async function updateBackgroundImage() {
     try {
         // 使用新的图片API
-        const imageUrl = 'https://th.bing.com/th/id/R.b224bcc6208e1740552a6e55abdb489a?rik=%2boC%2bgVh11d%2fLXQ&pid=ImgRaw&r=0';
+        const imageUrl = 'https://i.loli.net/2020/05/29/hdPI3iUBl4NugxJ.png';
 
         // 创建新的背景元素
         const newBg = document.createElement('div');
