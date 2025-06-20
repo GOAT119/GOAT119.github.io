@@ -1,19 +1,12 @@
 :root {
-    /* 主色调 */
-    --primary-dark: #43c46e;    /* 深军绿色 */
-    --primary-light: #4685c4;   /* 军绿色 */
-    
-    /* 强调色 */
-    --accent-color: #f4b811;    /* 军红色 */
-    --accent-hover: #f0f40c;    /* 高亮红色 */
-    
-    /* 辅助色 */
-    --secondary-dark: #34495E;  /* 迷彩绿 */
-    --secondary-light: #486581; /* 浅迷彩色 */
-    
-    /* 玻璃效果颜色 */
-    --glass-bg: rgba(0, 179, 255, 0.123);     /* 深色半透明背景 */
-    --glass-border: rgba(31, 157, 189, 0.822); /* 边框颜色 */
+    /* 夏日夜空烟花主题色 */
+    --primary-dark: #181d3a;    /* 深夜蓝 */
+    --primary-light: #000000;   /* 紫色 */
+    --accent-color: #ffd700;    /* 金色 */
+    --accent-hover: #00bfff;    /* 粉色 */
+    --star-color: #fffbe7;      /* 星星色 */
+    --glass-bg: rgba(62, 62, 62, 0.383); /* 深夜蓝半透明 */
+    --glass-border: rgba(255, 215, 0, 0.5); /* 金色边框 */
 }
 
 * {
@@ -26,30 +19,36 @@ body {
     margin: 0;
     padding: 0;
     min-height: 100vh;
-    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 10%);
+    background: none;
     font-family: 'Noto Sans SC', sans-serif;
-    color: #fff;
+    color: #e82121;
     position: relative;
-    background-image: url('123.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    background-image: none;
+    overflow-x: hidden;
 }
 
 body::before {
+    /* 保留夜空和星星背景，去除高亮/发光/模糊/遮罩 */
     content: '';
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 0.3),
-        rgba(0, 0, 0, 0.4)
-    );
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(circle at 20% 10%, var(--star-color) 0.7px, transparent 1vw),
+                radial-gradient(circle at 80% 15%, var(--star-color) 0.8px, transparent 1.2vw),
+                radial-gradient(circle at 60% 8%, var(--star-color) 0.7px, transparent 1vw),
+                linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, transparent 40%);
     z-index: 0;
+    pointer-events: none;
+    /* 去除发光/高亮/模糊 */
+    opacity: 1;
+    filter: none !important;
+}
+
+body::after {
+    /* 去除底部烟花色块 */
+    display: none !important;
 }
 
 .container {
@@ -60,15 +59,20 @@ body::before {
     flex: 1;
     position: relative;
     z-index: 1;
-    margin-top: 10px;
+    margin-top: 1px;
+    background: rgba(40, 40, 40, 0.45);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 0px;
 }
 
 .glass-effect {
     background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    border: 2px solid var(--glass-border);
+    /* 去除模糊和发光 */
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: none !important;
     border-radius: 10px;
     padding: 20px;
     position: relative;
@@ -76,17 +80,8 @@ body::before {
 }
 
 .glass-effect::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, 
-        transparent, 
-        rgba(255, 0, 0, 0.5),
-        transparent
-    );
+    /* 去除顶部发光线 */
+    background: none !important;
 }
 
 /* 动画效果 */
@@ -124,13 +119,13 @@ body::before {
     font-weight: lighter;
 }
 
-.glow {
-    font-size: 2.8em;
-    margin: 15px 0;
-    background: linear-gradient(45deg, var(--accent-color), var(--secondary-dark));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 15px rgba(192, 57, 43, 0.7);
+.glow, .main-title h1, .main-title h4, h1, h3, h4, .highlight {
+    text-shadow: none;
+    filter: none;
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: unset;
+    background: none;
+    color: #fff !important;
 }
 
 /* 管理员样式 */
@@ -173,6 +168,11 @@ body::before {
 .loading-bar {
     margin: 20px;
     position: relative;
+    background: rgba(40, 40, 40, 0.45);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 1px;
+    box-shadow: 0 4px 32px 0 rgba(0,0,0,0.12);
 }
 
 .progress-container {
@@ -181,13 +181,15 @@ body::before {
     border-radius: 3px;
     overflow: hidden;
     margin-top: 10px;
+    position: relative;
 }
 
 .progress {
     height: 100%;
     background: linear-gradient(90deg, var(--accent-color), var(--accent-hover));
+    box-shadow: 0 0 16px 2px var(--accent-hover), 0 0 32px 4px var(--accent-color);
     width: 0%;
-    transition: width 0.3s ease;
+    transition: width 0.3s cubic-bezier(.4,2,.6,1);
     position: relative;
 }
 
@@ -341,7 +343,10 @@ body::before {
 }
 
 .tag {
-    background: var(--secondary-dark);
+    background: rgba(255,255,255,0.08);
+    border: 1.5px solid var(--accent-hover);
+    color: var(--accent-hover);
+    box-shadow: 0 0 8px 1px var(--accent-hover);
     padding: 5px 15px;
     border-radius: 20px;
     font-size: 0.9em;
@@ -349,7 +354,6 @@ body::before {
     align-items: center;
     gap: 5px;
     transition: all 0.3s ease;
-    border: 1px solid var(--glass-border);
 }
 
 .tag:hover {
@@ -456,7 +460,7 @@ body::before {
     background: linear-gradient(45deg, var(--accent-color), var(--secondary-dark));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 15px rgba(192, 57, 43, 0.7);
+    text-shadow: none;
 }
 
 /* 时间信息栏样式 */
@@ -465,6 +469,11 @@ body::before {
     padding: 10px 20px;
     z-index: 1;
     position: relative;
+    background: rgba(40, 40, 40, 0.45);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 16px;
+    box-shadow: 0 4px 32px 0 rgba(0,0,0,0.12);
 }
 
 .time-info {
@@ -721,18 +730,15 @@ body {
     margin: 0;
     padding: 0;
     min-height: 100vh;
-    background-image: url('123.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    background-image: none;
     font-family: 'Noto Sans SC', sans-serif;
-    color: #fff;
+    color: #ffffff;
     position: relative;
 }
 
 /* 添加背景图片放大动画 */
 .bg-zoom {
+    /* 保留背景图片，去除放大动画和遮罩 */
     position: fixed;
     top: 0;
     left: 0;
@@ -740,13 +746,22 @@ body {
     height: 100%;
     background-size: cover;
     background-position: center;
-    transition: transform 5s ease;
     z-index: -1;
-    filter: brightness(0.9);
+    /* 去除放大动画 */
+    transition: none !important;
+    transform: none !important;
+    animation: bgBreath 12s ease-in-out infinite;
 }
 
-.bg-zoom.active {
-    transform: scale(1.1);
+.bg-zoom::after {
+    /* 去除遮罩 */
+    background: none !important;
+}
+
+@keyframes bgBreath {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+    100% { transform: scale(1); }
 }
 
 /* 添加在线人数统计样式 */
@@ -840,7 +855,7 @@ button:hover {
     height: 50px;
     border-radius: 50%;
     overflow: hidden;
-    box-shadow: 0 0 30px rgba(255, 56, 56, 0.5);
+    box-shadow: none !important;
     flex: 0 0 50px;
     position: relative;
     animation: rotate 8s linear infinite;
@@ -873,20 +888,8 @@ button:hover {
     border-radius: 50%;
     background: transparent;
     border: 2px solid transparent;
-    box-shadow: 0 0 15px var(--accent-color);
-    animation: glowing 2s linear infinite;
-}
-
-@keyframes glowing {
-    0% {
-        box-shadow: 0 0 15px rgba(192, 57, 43, 0.3);
-    }
-    50% {
-        box-shadow: 0 0 20px rgba(192, 57, 43, 0.5);
-    }
-    100% {
-        box-shadow: 0 0 15px rgba(192, 57, 43, 0.3);
-    }
+    box-shadow: none !important;
+    animation: none !important;
 }
 
 /* 当音乐暂停时停止旋转 */
@@ -930,5 +933,50 @@ button:hover {
 .container > div {
     border: 2px solid var(--glass-border);
     border-radius: 8px;
+}
+
+/* 规则栏、信息栏烟花/星星点缀 */
+.rules h3::before, .description h3::before, .staff h3::before {
+    content: '🎆';
+    margin-right: 8px;
+    font-size: 1.1em;
+}
+.info-item h3::before {
+    content: '⭐';
+    margin-right: 6px;
+    font-size: 1em;
+}
+
+/* hover/active 柔和动画 */
+button, .tag, .rule-item, .staff-member, .info-item {
+    transition: background 0.5s cubic-bezier(.4,2,.6,1),
+                box-shadow 0.5s cubic-bezier(.4,2,.6,1),
+                transform 0.5s cubic-bezier(.4,2,.6,1);
+}
+button:hover, .tag:hover, .rule-item:hover, .staff-member:hover, .info-item:hover {
+    box-shadow: none !important;
+}
+
+/* 适配主要内容层级 */
+.container, .time-bar, .loading-bar {
+    position: relative;
+    z-index: 10;
+}
+
+.progress-icon {
+    position: fixed;
+    top: 0; /* 这里稍后JS动态设置 */
+    left: 0;
+    width: 28px;
+    height: 28px;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 9999;
+    background: rgba(255,255,255,0.7);
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+    border: 2px solid #fff;
+    object-fit: contain;
+    transition: left 0.2s cubic-bezier(.4,2,.6,1), top 0.2s cubic-bezier(.4,2,.6,1);
 }
  

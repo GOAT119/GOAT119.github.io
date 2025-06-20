@@ -32,8 +32,22 @@ function DownloadingFile(filename) {
 function updateProgress() {
     if (window.filesTotal > 0) {
         const progress = (window.filesDownloaded / window.filesTotal) * 100;
-        document.getElementById('progress').style.width = `${progress}%`;
+        const progressBar = document.getElementById('progress');
+        progressBar.style.width = `${progress}%`;
         document.getElementById('percentage').textContent = `${Math.round(progress)}%`;
+        // 图标全局悬浮，跟随进度条进度移动
+        const icon = document.querySelector('.progress-icon');
+        const container = document.querySelector('.progress-container');
+        if (icon && container) {
+            const rect = container.getBoundingClientRect();
+            const iconWidth = icon.offsetWidth;
+            // 横坐标：进度百分比对应的x
+            let left = rect.left + (progress / 100) * rect.width;
+            left = Math.max(rect.left + iconWidth/2, Math.min(left, rect.right - iconWidth/2));
+            icon.style.left = `${left}px`;
+            // 纵坐标：进度条垂直居中
+            icon.style.top = `${rect.top + rect.height/2}px`;
+        }
     }
 }
 
@@ -163,6 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         console.error('particles.js 未能正确加载');
     }
+    updateProgress(); // 页面加载后立即刷新一次图标位置
 });
 
 // 添加颜色渐变效果
@@ -227,11 +242,6 @@ document.addEventListener('DOMContentLoaded', () => {
         bgMusic.volume = 0.5;
         
         // 初始化时设置状态
-        if (!bgMusic.paused) {
-            musicPlayer.classList.add('music-playing');
-        } else {
-            musicPlayer.classList.add('music-paused');
-        }
         
         // 添加歌词相关功能
         function updateLyrics() {
@@ -372,7 +382,7 @@ function preloadImage(url) {
 async function updateBackgroundImage() {
     try {
         // 使用新的图片API
-        const imageUrl = 'https://i.loli.net/2020/05/29/hdPI3iUBl4NugxJ.png';
+        const imageUrl = 'https://wallpapercave.com/wp/wp2149975.jpg';
 
         // 创建新的背景元素
         const newBg = document.createElement('div');
@@ -418,118 +428,22 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(updateBackgroundImage, 30000); // 30000毫秒 = 30秒
 });
 
-// 为所有卡片添加淡入效果
-document.querySelectorAll('.card').forEach((card, index) => {
-  card.style.animationDelay = `${index * 0.2}s`;
-  card.classList.add('fade-in');
+// 动态生成樱花瓣
+function createSakuraPetals(num = 18) {
+    const sakuraBox = document.querySelector('.sakura');
+    if (!sakuraBox) return;
+    for (let i = 0; i < num; i++) {
+        const petal = document.createElement('div');
+        petal.className = 'sakura-petal';
+        petal.style.left = Math.random() * 100 + 'vw';
+        petal.style.animationDelay = (Math.random() * 8) + 's';
+        petal.style.opacity = 0.5 + Math.random() * 0.5;
+        petal.style.transform = `scale(${0.7 + Math.random() * 0.6})`;
+        sakuraBox.appendChild(petal);
+    }
+}
+document.addEventListener('DOMContentLoaded', () => {
+    createSakuraPetals(18);
 });
 
-// 添加滚动显示动画
-function handleScroll() {
-  const elements = document.querySelectorAll('.animate-on-scroll');
-  elements.forEach(element => {
-    const elementTop = element.getBoundingClientRect().top;
-    const windowHeight = window.innerHeight;
-    
-    if (elementTop < windowHeight * 0.8) {
-      element.classList.add('fade-in');
-    }
-  });
-}
-
-window.addEventListener('scroll', handleScroll);
-
-// 在现有代码后添加烟花效果相关代码
-
-// 烟花效果类
-class Firework {
-    constructor(x, y, targetX, targetY) {
-        this.x = x;
-        this.y = y;
-        this.startX = x;
-        this.startY = y;
-        this.targetX = targetX;
-        this.targetY = targetY;
-        
-        this.distanceToTarget = Math.sqrt(
-            Math.pow(targetX - x, 2) + Math.pow(targetY - y, 2)
-        );
-        this.distanceTraveled = 0;
-        
-        this.coordinates = [];
-        this.coordinateCount = 3;
-        while(this.coordinateCount--) {
-            this.coordinates.push([this.x, this.y]);
-        }
-        this.angle = Math.atan2(targetY - y, targetX - x);
-        this.speed = 2;
-        this.acceleration = 1.05;
-        this.brightness = random(50, 70);
-        this.alpha = 1;
-        this.decay = random(0.015, 0.03);
-        this.particles = [];
-    }
-
-    update(index) {
-        this.coordinates.pop();
-        this.coordinates.unshift([this.x, this.y]);
-        
-        this.speed *= this.acceleration;
-        
-        let vx = Math.cos(this.angle) * this.speed;
-        let vy = Math.sin(this.angle) * this.speed;
-        
-        this.distanceTraveled = Math.sqrt(
-            Math.pow(this.x - this.startX, 2) + 
-            Math.pow(this.y - this.startY, 2)
-        );
-        
-        if(this.distanceTraveled >= this.distanceToTarget) {
-            createParticles(this.targetX, this.targetY);
-            fireworks.splice(index, 1);
-        } else {
-            this.x += vx;
-            this.y += vy;
-        }
-    }
-
-    draw() {
-        ctx.beginPath();
-        ctx.moveTo(
-            this.coordinates[this.coordinates.length - 1][0],
-            this.coordinates[this.coordinates.length - 1][1]
-        );
-        ctx.lineTo(this.x, this.y);
-        ctx.strokeStyle = `hsla(${random(0, 360)}, 100%, 50%, ${this.alpha})`;
-        ctx.stroke();
-    }
-}
-
-// 烟花粒子类
-// 工具函数
-function random(min, max) {
-    return Math.random() * (max - min) + min;
-}
-
-
-// 在初始化音频可视化时添加错误处理
-const canvas = document.getElementById('audioCanvas');
-if (canvas) {
-    const ctx = canvas.getContext('2d');
-    // 继续处理音频可视化的代码...
-} else {
-    console.warn('音频可视化canvas元素未找到');
-}
-
-// 添加歌词相关功能
-function updateLyrics() {
-    const lyricsWrapper = document.getElementById('lyricsWrapper');
-    if (!lyricsWrapper) return;
-    
-    // 清空歌词容器内容
-    lyricsWrapper.innerHTML = '';
-}
-
-// 在音频加载完成后调用
-document.getElementById('bgMusic').addEventListener('loadeddata', updateLyrics);
-  
+window.addEventListener('resize', updateProgress);
