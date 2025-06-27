@@ -382,7 +382,7 @@ function preloadImage(url) {
 async function updateBackgroundImage() {
     try {
         // 使用新的图片API
-        const imageUrl = 'https://wallpapercave.com/wp/wp2149975.jpg';
+        const imageUrl = 'https://wallpapercave.com/wp/wp1937375.png';
 
         // 创建新的背景元素
         const newBg = document.createElement('div');
