@@ -344,6 +344,13 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         console.warn('背景音乐元素未找到');
     }
+
+    // 随机选择1.mp3~5.mp3
+    if (bgMusic) {
+        const n = Math.floor(Math.random() * 5) + 1;
+        bgMusic.querySelector('source').src = `${n}.mp3`;
+        bgMusic.load();
+    }
 });
 
 
@@ -382,7 +389,7 @@ function preloadImage(url) {
 async function updateBackgroundImage() {
     try {
         // 使用新的图片API
-        const imageUrl = 'https://wallpapercave.com/wp/wp1937375.png';
+        const imageUrl = 'img/background3.jpg';
 
         // 创建新的背景元素
         const newBg = document.createElement('div');
